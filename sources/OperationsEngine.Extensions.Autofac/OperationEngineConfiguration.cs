@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace OperationEngine.Extensions.Autofac;
+namespace OperationsEngine.Extensions.Autofac;
 
 public class OperationEngineConfiguration
 {
@@ -16,7 +16,7 @@ public class OperationEngineConfiguration
         IEnumerable<Type> operationTypes = assemblies
             .Where(x => x != null)
             .SelectMany(x => x.GetTypes())
-            .Where(x => typeof(IOperation).IsAssignableFrom(x));
+            .Where(x => x.ImplementsAnyInterface(typeof(IOperation), typeof(IOperation<>)));
 
         OperationTypes.AddRange(operationTypes);
 
@@ -26,7 +26,7 @@ public class OperationEngineConfiguration
     public OperationEngineConfiguration AddOperationsFromAssemblyContaining<T>()
     {
         IEnumerable<Type> operationTypes = typeof(T).Assembly.GetTypes()
-            .Where(x => typeof(IOperation).IsAssignableFrom(x));
+            .Where(x => x.ImplementsAnyInterface(typeof(IOperation), typeof(IOperation<>)));
 
         OperationTypes.AddRange(operationTypes);
 

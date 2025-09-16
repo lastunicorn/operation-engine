@@ -1,4 +1,4 @@
-﻿namespace OperationEngine;
+﻿namespace OperationsEngine;
 
 public interface IOperation
 {

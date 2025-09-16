@@ -1,4 +1,4 @@
-﻿namespace OperationEngine;
+﻿namespace OperationsEngine;
 
 public class OperationManager
 {
@@ -17,11 +17,33 @@ public class OperationManager
         await operation.ExecuteAsync();
     }
 
-    public async Task ExecuteAsync<T>(Func<T, Task> action)
-        where T : IOperation
+    public async Task ExecuteAsync<TOperation>(Func<TOperation, Task> action)
+        where TOperation : IOperation
     {
-        T operation = operationFactory.Create<T>();
-        await action?.Invoke(operation);
-        await operation.ExecuteAsync();
+        TOperation operation = operationFactory.Create<TOperation>();
+
+        if (action != null)
+            await action(operation).ConfigureAwait(false);
+
+        await operation.ExecuteAsync().ConfigureAwait(false);
+    }
+
+    public async Task<TResult> ExecuteAsync<TOperation, TResult>(Action<TOperation> action)
+        where TOperation : IOperation<TResult>
+    {
+        TOperation operation = operationFactory.Create<TOperation, TResult>();
+        action?.Invoke(operation);
+        return await operation.ExecuteAsync();
+    }
+
+    public async Task<TResult> ExecuteAsync<TOperation, TResult>(Func<TOperation, Task> action)
+        where TOperation : IOperation<TResult>
+    {
+        TOperation operation = operationFactory.Create<TOperation, TResult>();
+
+        if (action != null)
+            await action(operation).ConfigureAwait(false);
+
+        return await operation.ExecuteAsync().ConfigureAwait(false);
     }
 }

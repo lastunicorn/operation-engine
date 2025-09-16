@@ -1,8 +1,9 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using Autofac;
-using OperationEngine;
-using OperationEngine.Extensions.Autofac;
 using OperationsDemo.Operations;
+using OperationsEngine;
+using OperationsEngine.Extensions.Autofac;
 
 namespace OperationsDemo;
 
@@ -39,21 +40,26 @@ internal static class Program
 
     private static async Task ExecuteAnotherOperation(OperationManager operationManager)
     {
-        await operationManager.ExecuteAsync<AnotherOperation>(x =>
+        int value = await operationManager.ExecuteAsync<AnotherOperation, int>(x =>
         {
             x.Name = "Example3";
             x.Age = 22;
         });
+
+        Console.WriteLine($"AnotherOperation returned value: {value}");
     }
 
     private static IContainer BuildDependencyContainer()
     {
         ContainerBuilder builder = new();
 
+        Stopwatch stopwatch = Stopwatch.StartNew();
         builder.RegisterOperationEngine(config =>
         {
             config.AddOperationsFromAssembly(Assembly.GetExecutingAssembly());
         });
+        stopwatch.Stop();
+        Console.WriteLine($"Registered operation engine in {stopwatch.ElapsedMilliseconds}ms");
 
         return builder.Build();
     }

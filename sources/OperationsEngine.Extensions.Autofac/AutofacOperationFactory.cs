@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace OperationEngine.Extensions.Autofac;
+namespace OperationsEngine.Extensions.Autofac;
 
 internal class AutofacOperationFactory : IOperationFactory
 {
@@ -11,9 +11,15 @@ internal class AutofacOperationFactory : IOperationFactory
         this.lifetimeScope = lifetimeScope ?? throw new ArgumentNullException(nameof(lifetimeScope));
     }
 
-    public T Create<T>()
-        where T : IOperation
+    public TOperation Create<TOperation>()
+        where TOperation : IOperation
     {
-        return lifetimeScope.Resolve<T>();
+        return lifetimeScope.Resolve<TOperation>();
+    }
+
+    public TOperation Create<TOperation, TResult>()
+        where TOperation : IOperation<TResult>
+    {
+        return lifetimeScope.Resolve<TOperation>();
     }
 }

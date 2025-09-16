@@ -1,11 +1,16 @@
-﻿namespace OperationEngine;
+﻿namespace OperationsEngine;
 
 public class DefaultOperationFactory : IOperationFactory
 {
-    public T Create<T>()
-        where T : IOperation
+    public TOperation Create<TOperation>()
+        where TOperation : IOperation
     {
-        T operation = Activator.CreateInstance<T>();
-        return operation;
+        return Activator.CreateInstance<TOperation>();
+    }
+
+    public TOperation Create<TOperation, TResult>()
+        where TOperation : IOperation<TResult>
+    {
+        return Activator.CreateInstance<TOperation>();
     }
 }

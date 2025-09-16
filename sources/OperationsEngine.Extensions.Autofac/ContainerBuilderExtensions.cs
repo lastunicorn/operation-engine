@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace OperationEngine.Extensions.Autofac;
+namespace OperationsEngine.Extensions.Autofac;
 
 public static class ContainerBuilderExtensions
 {
@@ -11,12 +11,10 @@ public static class ContainerBuilderExtensions
         configBuilder?.Invoke(config);
 
         foreach (Type operationType in config.OperationTypes)
-        {
             builder
                 .RegisterType(operationType)
                 .AsSelf()
                 .InstancePerDependency();
-        }
 
         Type operationFactoryType = config.OperationFactoryType ?? typeof(AutofacOperationFactory);
 

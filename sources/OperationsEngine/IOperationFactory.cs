@@ -1,7 +1,10 @@
-﻿namespace OperationEngine;
+﻿namespace OperationsEngine;
 
 public interface IOperationFactory
 {
-    T Create<T>()
-        where T : IOperation;
+    public TOperation Create<TOperation>()
+        where TOperation : IOperation;
+
+    public TOperation Create<TOperation, TResult>()
+        where TOperation : IOperation<TResult>;
 }
