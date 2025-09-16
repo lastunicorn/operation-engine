@@ -22,28 +22,28 @@ internal static class Program
 
     private static async Task ExecuteMyOperation(OperationManager operationManager)
     {
-        await operationManager.ExecuteAsync<MyOperation>(x =>
+        await operationManager.ExecuteAsync<MyOperation>(op =>
         {
-            x.Name = "Example1";
-            x.Age = 20;
+            op.Name = "Example1";
+            op.Age = 20;
         });
     }
 
     private static async Task ExecuteHisOperation(OperationManager operationManager)
     {
-        await operationManager.ExecuteAsync<HisOperation>(x =>
+        await operationManager.ExecuteAsync<HisOperation>(op =>
         {
-            x.Name = "Example2";
-            x.Age = 21;
+            op.Name = "Example2";
+            op.Age = 21;
         });
     }
 
     private static async Task ExecuteAnotherOperation(OperationManager operationManager)
     {
-        int value = await operationManager.ExecuteAsync<AnotherOperation, int>(x =>
+        int value = await operationManager.ExecuteAsync<AnotherOperation, int>(op =>
         {
-            x.Name = "Example3";
-            x.Age = 22;
+            op.Name = "Example3";
+            op.Age = 22;
         });
 
         Console.WriteLine($"AnotherOperation returned value: {value}");
