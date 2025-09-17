@@ -10,7 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\OperationsEngine\OperationsEngine.csproj" />
+        <ProjectReference Include="..\OperationEngine\OperationEngine.csproj" />
     </ItemGroup>
 
 </Project>

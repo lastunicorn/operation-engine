@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
+﻿using System.Reflection;
 using Autofac;
 using OperationsDemo.Operations;
 using OperationsEngine;
@@ -53,13 +52,10 @@ internal static class Program
     {
         ContainerBuilder builder = new();
 
-        Stopwatch stopwatch = Stopwatch.StartNew();
         builder.RegisterOperationEngine(config =>
         {
             config.AddOperationsFromAssembly(Assembly.GetExecutingAssembly());
         });
-        stopwatch.Stop();
-        Console.WriteLine($"Registered operation engine in {stopwatch.ElapsedMilliseconds}ms");
 
         return builder.Build();
     }

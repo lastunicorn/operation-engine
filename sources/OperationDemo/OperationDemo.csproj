@@ -11,8 +11,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\OperationsEngine.Extensions.Autofac\OperationsEngine.Extensions.Autofac.csproj" />
-      <ProjectReference Include="..\OperationsEngine\OperationsEngine.csproj" />
+      <ProjectReference Include="..\OperationEngine.Extensions.Autofac\OperationEngine.Extensions.Autofac.csproj" />
+      <ProjectReference Include="..\OperationEngine\OperationEngine.csproj" />
     </ItemGroup>
 
 </Project>
