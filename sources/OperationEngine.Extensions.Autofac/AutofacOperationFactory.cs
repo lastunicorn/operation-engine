@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using OperationEngine;
+using DustInTheWInd.OperationEngine;
 
-namespace OperationEngine.Extensions.Autofac;
+namespace DustInTheWInd.OperationEngine.Extensions.Autofac;
 
 internal class AutofacOperationFactory : IOperationFactory
 {

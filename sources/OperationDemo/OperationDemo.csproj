@@ -3,6 +3,8 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
+        <AssemblyName>DustInTheWInd.$(MSBuildProjectName)</AssemblyName>
+        <RootNamespace>DustInTheWInd.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

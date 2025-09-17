@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using OperationEngine;
+using DustInTheWInd.OperationEngine;
 
-namespace OperationEngine.Extensions.Autofac;
+namespace DustInTheWInd.OperationEngine.Extensions.Autofac;
 
 public class OperationEngineConfiguration
 {

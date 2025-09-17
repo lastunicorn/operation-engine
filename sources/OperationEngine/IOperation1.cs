@@ -1,4 +1,4 @@
-﻿namespace OperationEngine;
+﻿namespace DustInTheWInd.OperationEngine;
 
 public interface IOperation<T>
 {

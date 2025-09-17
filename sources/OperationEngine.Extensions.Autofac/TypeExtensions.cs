@@ -1,4 +1,4 @@
-﻿namespace OperationEngine.Extensions.Autofac;
+﻿namespace DustInTheWInd.OperationEngine.Extensions.Autofac;
 
 internal static class TypeExtensions
 {

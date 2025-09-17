@@ -1,6 +1,6 @@
-﻿using OperationEngine;
+﻿using DustInTheWInd.OperationEngine;
 
-namespace OperationDemo.Operations;
+namespace DustInTheWInd.OperationDemo.Operations;
 
 internal class MyOperation : IOperation
 {
