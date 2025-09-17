@@ -26,6 +26,7 @@ internal static class TypeExtensions
 
         return false;
     }
+
     public static bool ImplementsAnyInterface(this Type type, params Type[] interfaceTypes)
     {
         Type[] actualInterfaceTypes = interfaceTypes

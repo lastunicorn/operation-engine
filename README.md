@@ -2,7 +2,58 @@
 
 This framework offers a simple approach of instantiating and executing Sub Use Case logic which are, usually, needed to be executed from multiple Use Cases.
 
-## How it came to be?
+## I) Usage
+
+### Install NuGet Packages
+
+```powershell
+Install-Package DustInTheWind.OperationEngine
+Install-Package DustInTheWind.OperationEngine.Extensions.Autofac
+```
+
+### Register Operations
+
+This example uses an Autofac container builder.
+
+```csharp
+builder.RegisterOperationEngine(config =>
+{
+    config.AddOperationsFromAssembly(Assembly.GetExecutingAssembly());
+});
+```
+
+### Create an Operation
+
+```csharp
+internal class MyOperation : IOperation
+{
+    public string Name { get; set; }
+
+    public int Age { get; set; }
+
+    public Task ExecuteAsync()
+    {
+        Console.WriteLine($"Executing MyOperation. Name: {Name}; Age: {Age}");
+        return Task.CompletedTask;
+    }
+}
+```
+
+### Execute an Operation
+
+An instance of the `OperationManager` must be injected in the constructor.
+
+Then, it can be used like this:
+
+```csharp
+await operationManager.ExecuteAsync<MyOperation>(op =>
+{
+    op.Name = "Alex";
+    op.Age = 20;
+});
+```
+
+## II) History
 
 ### The Need
 
