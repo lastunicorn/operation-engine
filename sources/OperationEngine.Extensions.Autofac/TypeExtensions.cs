@@ -1,4 +1,4 @@
-﻿namespace OperationsEngine.Extensions.Autofac;
+﻿namespace OperationEngine.Extensions.Autofac;
 
 internal static class TypeExtensions
 {

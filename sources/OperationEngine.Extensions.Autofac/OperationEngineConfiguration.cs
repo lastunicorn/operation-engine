@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
+using OperationEngine;
 
-namespace OperationsEngine.Extensions.Autofac;
+namespace OperationEngine.Extensions.Autofac;
 
 public class OperationEngineConfiguration
 {

@@ -1,4 +1,4 @@
-﻿namespace OperationsEngine;
+﻿namespace OperationEngine;
 
 public class DefaultOperationFactory : IOperationFactory
 {

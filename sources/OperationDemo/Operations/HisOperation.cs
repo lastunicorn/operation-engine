@@ -1,6 +1,6 @@
-﻿using OperationsEngine;
+﻿using OperationEngine;
 
-namespace OperationsDemo.Operations;
+namespace OperationDemo.Operations;
 
 internal class HisOperation : IOperation
 {

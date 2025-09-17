@@ -1,6 +1,7 @@
 ﻿using Autofac;
+using OperationEngine;
 
-namespace OperationsEngine.Extensions.Autofac;
+namespace OperationEngine.Extensions.Autofac;
 
 internal class AutofacOperationFactory : IOperationFactory
 {

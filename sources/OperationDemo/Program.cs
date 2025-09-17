@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 using Autofac;
-using OperationsDemo.Operations;
-using OperationsEngine;
-using OperationsEngine.Extensions.Autofac;
+using OperationDemo.Operations;
+using OperationEngine;
+using OperationEngine.Extensions.Autofac;
 
-namespace OperationsDemo;
+namespace OperationDemo;
 
 internal static class Program
 {
