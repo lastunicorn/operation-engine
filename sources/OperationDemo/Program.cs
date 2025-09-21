@@ -5,6 +5,7 @@ using MediatR;
 using MediatR.Extensions.Autofac.DependencyInjection;
 using MediatR.Extensions.Autofac.DependencyInjection.Builder;
 using OperationDemo.Application.UseCases.CreateProduct;
+using OperationDemo.Application.UseCases.UpdateProduct;
 
 namespace DustInTheWInd.OperationDemo;
 
@@ -16,10 +17,27 @@ internal static class Program
 
         IMediator mediator = container.Resolve<IMediator>();
 
+        await ExecuteCreateProduct(mediator);
+        Console.WriteLine();
+        await ExecuteUpdateProduct(mediator);
+    }
+
+    private static async Task ExecuteCreateProduct(IMediator mediator)
+    {
         CreateProductRequest request = new()
         {
             Name = "Sample Product",
             Price = 99.99m
+        };
+        await mediator.Send(request);
+    }
+
+    private static async Task ExecuteUpdateProduct(IMediator mediator)
+    {
+        UpdateProductRequest request = new()
+        {
+            Name = "Updated Product",
+            Price = 5.99m
         };
         await mediator.Send(request);
     }

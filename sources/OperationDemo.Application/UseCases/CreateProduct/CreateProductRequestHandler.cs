@@ -16,37 +16,43 @@ internal class CreateProductRequestHandler : IRequestHandler<CreateProductReques
     public async Task Handle(CreateProductRequest request, CancellationToken cancellationToken)
     {
         await ExecuteMyOperation(request);
-        await ExecuteHisOperation();
-        await ExecuteAnotherOperation();
+        await ExecuteHisOperation(request);
+        await ExecuteAnotherOperation(request);
 
         Console.WriteLine("Product created successfully.");
     }
 
     private async Task ExecuteMyOperation(CreateProductRequest request)
     {
-        await operationFactory.ExecuteAsync<MyOperation>(op =>
-        {
-            op.Name = request.Name;
-            op.Age = 20;
-        });
+        await operationFactory.Create<MyOperation>()
+            .Initialise(op =>
+            {
+                op.Name = request.Name;
+                op.Price = request.Price;
+            })
+            .ExecuteAsync();
     }
 
-    private async Task ExecuteHisOperation()
+    private async Task ExecuteHisOperation(CreateProductRequest request)
     {
-        await operationFactory.ExecuteAsync<HisOperation>(op =>
-        {
-            op.Name = "Example2";
-            op.Age = 21;
-        });
+        await operationFactory.Create<HisOperation>()
+            .Initialise(op =>
+            {
+                op.Name = request.Name;
+                op.Price = request.Price;
+            })
+            .ExecuteAsync();
     }
 
-    private async Task ExecuteAnotherOperation()
+    private async Task ExecuteAnotherOperation(CreateProductRequest request)
     {
-        int value = await operationFactory.ExecuteAsync<AnotherOperation, int>(op =>
-        {
-            op.Name = "Example3";
-            op.Age = 22;
-        });
+        int value = await operationFactory.Create<AnotherOperation, int>()
+            .Initialise(op =>
+            {
+                op.Name = request.Name;
+                op.Price = request.Price;
+            })
+            .ExecuteAsync();
 
         Console.WriteLine($"AnotherOperation returned value: {value}");
     }

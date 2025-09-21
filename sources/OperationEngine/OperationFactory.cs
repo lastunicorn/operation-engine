@@ -9,7 +9,21 @@ public class OperationFactory
         this.operationFactory = operationFactory ?? throw new ArgumentNullException(nameof(operationFactory));
     }
 
-    public async Task ExecuteAsync<T>(Action<T> init = null)
+    public OperationBuilder<T> Create<T>()
+        where T : IOperation
+    {
+        T operation = operationFactory.Create<T>();
+        return new OperationBuilder<T>(operation);
+    }
+
+    public OperationBuilder<TOperation, TResult> Create<TOperation, TResult>()
+        where TOperation : IOperation<TResult>
+    {
+        TOperation operation = operationFactory.Create<TOperation, TResult>();
+        return new OperationBuilder<TOperation, TResult>(operation);
+    }
+
+    public async Task CreateAndExecuteAsync<T>(Action<T> init = null)
         where T : IOperation
     {
         T operation = operationFactory.Create<T>();
@@ -19,7 +33,7 @@ public class OperationFactory
             .ConfigureAwait(false);
     }
 
-    public async Task<TResult> ExecuteAsync<TOperation, TResult>(Action<TOperation> init = null)
+    public async Task<TResult> CreateAndExecuteAsync<TOperation, TResult>(Action<TOperation> init = null)
         where TOperation : IOperation<TResult>
     {
         TOperation operation = operationFactory.Create<TOperation, TResult>();

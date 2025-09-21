@@ -6,11 +6,11 @@ internal class MyOperation : IOperation
 {
     public string Name { get; set; }
 
-    public int Age { get; set; }
+    public decimal Price { get; set; }
 
     public Task ExecuteAsync()
     {
-        Console.WriteLine($"Executing MyOperation. Name: {Name}; Age: {Age}");
+        Console.WriteLine($"Executing MyOperation. Name: {Name}; Price: {Price}");
         return Task.CompletedTask;
     }
 }
