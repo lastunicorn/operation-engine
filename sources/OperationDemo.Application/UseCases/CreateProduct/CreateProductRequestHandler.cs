@@ -1,6 +1,6 @@
 ﻿using DustInTheWInd.OperationEngine;
 using MediatR;
-using OperationDemo.Application.Operations;
+using OperationDemo.Application.SubUseCases;
 
 namespace OperationDemo.Application.UseCases.CreateProduct;
 

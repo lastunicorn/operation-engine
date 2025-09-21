@@ -1,8 +1,8 @@
 ﻿using DustInTheWInd.OperationEngine;
 
-namespace OperationDemo.Application.Operations;
+namespace OperationDemo.Application.SubUseCases;
 
-internal class HisOperation : IOperation
+internal class MyOperation : IOperation
 {
     public string Name { get; set; }
 
@@ -10,7 +10,7 @@ internal class HisOperation : IOperation
 
     public Task ExecuteAsync()
     {
-        Console.WriteLine($"Executing HisOperation. Name: {Name}; Price: {Price}");
+        Console.WriteLine($"Executing MyOperation. Name: {Name}; Price: {Price}");
         return Task.CompletedTask;
     }
 }

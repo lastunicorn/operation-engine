@@ -1,6 +1,6 @@
 ﻿using DustInTheWInd.OperationEngine;
 
-namespace OperationDemo.Application.Operations;
+namespace OperationDemo.Application.SubUseCases;
 
 internal class AnotherOperation : IOperation<int>
 {
