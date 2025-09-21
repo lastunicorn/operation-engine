@@ -38,7 +38,7 @@ public static class ContainerBuilderExtensions
     private static void RegisterOperationManager(this ContainerBuilder builder)
     {
         builder
-            .RegisterType<OperationFactory>()
+            .RegisterType<OperationManager>()
             .AsSelf()
             .SingleInstance();
     }

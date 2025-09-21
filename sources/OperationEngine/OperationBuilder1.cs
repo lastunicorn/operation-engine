@@ -1,7 +1,8 @@
-﻿namespace DustInTheWInd.OperationEngine;
+﻿
+namespace DustInTheWInd.OperationEngine;
 
-public class OperationBuilder<TOperation, TResult>
-    where TOperation : IOperation<TResult>
+public class OperationBuilder<TOperation>
+    where TOperation : IOperation
 {
     private readonly TOperation operation;
 
@@ -10,15 +11,15 @@ public class OperationBuilder<TOperation, TResult>
         this.operation = operation;
     }
 
-    public OperationBuilder<TOperation, TResult> Initialise(Action<TOperation> init = null)
+    public OperationBuilder<TOperation> Initialise(Action<TOperation> init = null)
     {
         init?.Invoke(operation);
         return this;
     }
 
-    public async Task<TResult> ExecuteAsync()
+    public async Task ExecuteAsync()
     {
-        return await operation.ExecuteAsync()
+        await operation.ExecuteAsync()
             .ConfigureAwait(false);
     }
 }

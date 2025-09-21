@@ -1,6 +1,6 @@
 ﻿namespace DustInTheWInd.OperationEngine;
 
-public interface IOperation<T>
+public interface IOperation<TResult>
 {
-    Task<T> ExecuteAsync();
+    Task<TResult> ExecuteAsync();
 }

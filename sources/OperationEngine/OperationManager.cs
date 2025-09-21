@@ -1,32 +1,32 @@
 ﻿namespace DustInTheWInd.OperationEngine;
 
-public class OperationFactory
+public class OperationManager
 {
     private readonly IOperationFactory operationFactory;
 
-    public OperationFactory(IOperationFactory operationFactory)
+    public OperationManager(IOperationFactory operationFactory)
     {
         this.operationFactory = operationFactory ?? throw new ArgumentNullException(nameof(operationFactory));
     }
 
-    public OperationBuilder<T> Create<T>()
-        where T : IOperation
+    public OperationBuilder<TOperation> Build<TOperation>()
+        where TOperation : IOperation
     {
-        T operation = operationFactory.Create<T>();
-        return new OperationBuilder<T>(operation);
+        TOperation operation = operationFactory.Create<TOperation>();
+        return new OperationBuilder<TOperation>(operation);
     }
 
-    public OperationBuilder<TOperation, TResult> Create<TOperation, TResult>()
+    public OperationBuilder<TOperation, TResult> Build<TOperation, TResult>()
         where TOperation : IOperation<TResult>
     {
         TOperation operation = operationFactory.Create<TOperation, TResult>();
         return new OperationBuilder<TOperation, TResult>(operation);
     }
 
-    public async Task CreateAndExecuteAsync<T>(Action<T> init = null)
-        where T : IOperation
+    public async Task CreateAndExecuteAsync<TOperation>(Action<TOperation> init = null)
+        where TOperation : IOperation
     {
-        T operation = operationFactory.Create<T>();
+        TOperation operation = operationFactory.Create<TOperation>();
         init?.Invoke(operation);
 
         await operation.ExecuteAsync()
