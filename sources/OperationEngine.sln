@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{162B1229-640F-4420-ABCF-7A508B90A135}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationDemo.Application", "OperationDemo.Application\OperationDemo.Application.csproj", "{CDA48D60-0098-43FE-99A2-F74FF381484F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,9 +36,17 @@ Global
 		{E3FAF14C-47B0-48DF-A424-0EAA052F4257}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3FAF14C-47B0-48DF-A424-0EAA052F4257}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3FAF14C-47B0-48DF-A424-0EAA052F4257}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA48D60-0098-43FE-99A2-F74FF381484F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA48D60-0098-43FE-99A2-F74FF381484F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA48D60-0098-43FE-99A2-F74FF381484F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA48D60-0098-43FE-99A2-F74FF381484F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{392EFFDE-37F5-48C2-A460-0FBE494AB8C7} = {162B1229-640F-4420-ABCF-7A508B90A135}
+		{CDA48D60-0098-43FE-99A2-F74FF381484F} = {162B1229-640F-4420-ABCF-7A508B90A135}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE44EBD1-0CE5-4719-9C12-AC195DAFDC4F}

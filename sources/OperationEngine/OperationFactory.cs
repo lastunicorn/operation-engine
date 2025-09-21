@@ -1,10 +1,10 @@
 ﻿namespace DustInTheWInd.OperationEngine;
 
-public class OperationManager
+public class OperationFactory
 {
     private readonly IOperationFactory operationFactory;
 
-    public OperationManager(IOperationFactory operationFactory)
+    public OperationFactory(IOperationFactory operationFactory)
     {
         this.operationFactory = operationFactory ?? throw new ArgumentNullException(nameof(operationFactory));
     }

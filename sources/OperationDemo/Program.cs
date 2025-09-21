@@ -1,8 +1,10 @@
 ﻿using System.Reflection;
 using Autofac;
-using DustInTheWInd.OperationDemo.Operations;
-using DustInTheWInd.OperationEngine;
 using DustInTheWInd.OperationEngine.Extensions.Autofac;
+using MediatR;
+using MediatR.Extensions.Autofac.DependencyInjection;
+using MediatR.Extensions.Autofac.DependencyInjection.Builder;
+using OperationDemo.Application.UseCases.CreateProduct;
 
 namespace DustInTheWInd.OperationDemo;
 
@@ -12,50 +14,30 @@ internal static class Program
     {
         IContainer container = BuildDependencyContainer();
 
-        OperationManager operationManager = container.Resolve<OperationManager>();
+        IMediator mediator = container.Resolve<IMediator>();
 
-        await ExecuteMyOperation(operationManager);
-        await ExecuteHisOperation(operationManager);
-        await ExecuteAnotherOperation(operationManager);
-    }
-
-    private static async Task ExecuteMyOperation(OperationManager operationManager)
-    {
-        await operationManager.ExecuteAsync<MyOperation>(op =>
+        CreateProductRequest request = new()
         {
-            op.Name = "Example1";
-            op.Age = 20;
-        });
-    }
-
-    private static async Task ExecuteHisOperation(OperationManager operationManager)
-    {
-        await operationManager.ExecuteAsync<HisOperation>(op =>
-        {
-            op.Name = "Example2";
-            op.Age = 21;
-        });
-    }
-
-    private static async Task ExecuteAnotherOperation(OperationManager operationManager)
-    {
-        int value = await operationManager.ExecuteAsync<AnotherOperation, int>(op =>
-        {
-            op.Name = "Example3";
-            op.Age = 22;
-        });
-
-        Console.WriteLine($"AnotherOperation returned value: {value}");
+            Name = "Sample Product",
+            Price = 99.99m
+        };
+        await mediator.Send(request);
     }
 
     private static IContainer BuildDependencyContainer()
     {
         ContainerBuilder builder = new();
 
+        Assembly useCaseAssembly = typeof(CreateProductRequest).Assembly;
+
         builder.RegisterOperationEngine(config =>
         {
-            config.AddOperationsFromAssembly(Assembly.GetExecutingAssembly());
+            config.AddOperationsFromAssembly(useCaseAssembly);
         });
+
+        builder.RegisterMediatR(MediatRConfigurationBuilder.Create(useCaseAssembly)
+            .WithAllOpenGenericHandlerTypesRegistered()
+            .Build());
 
         return builder.Build();
     }

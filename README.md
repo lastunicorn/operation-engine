@@ -1,6 +1,6 @@
 # Operation Engine
 
-This framework offers a simple approach of instantiating and executing Sub Use Case logic which are, usually, needed to be executed from multiple Use Cases.
+This framework offers a simple approach of instantiating and executing Sub Use Cases which are executed from multiple Use Cases.
 
 ## I) Usage
 
